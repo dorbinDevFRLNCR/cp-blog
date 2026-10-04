@@ -3,8 +3,8 @@ import Button from '../../ui/button/button'
 
 function Hero() {
   return (
-    <section>
-      <div className="px-4 pt-14 md:px-8 md:py-16">
+    <section className="min-h-[100dvh] flex items-center bg-gradient-to-b from-bg to-bg-dark">
+      <div className="px-4 md:px-8 md:py-16">
         <h1 className="font-black tracking-tighter leading-[0.85] lg:text-[140px] md:text-[100px] sm:text-[80px] text-[60px] text-fg">
           <span className="block text-accent-dev-primary">Code.</span>
           <span className="block text-accent-sim-primary">Cockpit.</span>
