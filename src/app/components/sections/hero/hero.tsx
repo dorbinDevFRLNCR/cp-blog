@@ -15,7 +15,7 @@ function Hero() {
             <span className="text-fg-muted">Ein Blog in drei Spuren.</span>
             <span>Real Code. Real Racing. Real Life.</span>
           </p>
-          <Button className="group max-w-content" variant="primary">
+          <Button href="/blog" className="group max-w-content" variant="primary">
             <span>Zum Blog</span>
             <MoveRight
               className="transition-transform duration-200 group-hover:translate-x-1"
