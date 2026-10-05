@@ -12,7 +12,7 @@ const map = {
 }
 
 function Button({ children, className, variant = 'primary', href, ...props }: Props) {
-  const classes = `inline-flex items-center justify-center px-8 max-w-max py-4 rounded-full gap-2 text-sm font-bold leading-none transition-all duration-200 ${map[variant]} ${className ?? ''}`
+  const classes = `inline-flex items-center justify-center px-4 max-w-max py-4 rounded-full gap-2 text-sm font-bold leading-none transition-all duration-200 md:px-8 ${map[variant]} ${className ?? ''}`
 
   if (href) {
     return (

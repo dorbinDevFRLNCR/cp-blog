@@ -20,8 +20,8 @@ export default async function BlogPage() {
   const posts: PostCard[] = await client.fetch(POSTS_QUERY)
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-8">
-      <h1 className="text-4xl font-bold mb-8">Cuper Racing Blog</h1>
+    <div className="w-full min-h-[calc(100dvh-180px)] max-w-7xl flex flex-col items-center justify-center p-8">
+      <h1 className="text-4xl font-bold">Hier entsteht etwas</h1>
       <div className="grid gap-4">
         {posts.map((post) => (
           <a

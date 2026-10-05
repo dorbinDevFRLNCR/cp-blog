@@ -18,7 +18,7 @@ function Header() {
             height={100}
           />
         </Link>
-        <button className="flex p-2 items-center justify-center rounded-full border border-zinc-700 text-zinc-200 hover:border-zinc-500 hover:bg-zinc-900 transition">
+        <button className="flex p-2 items-center justify-center rounded-full border border-zinc-700 text-zinc-200 hover:border-border-muted hover:bg-zinc-900 transition">
           <Search className="size-4 md:size-5" />
         </button>
       </div>
