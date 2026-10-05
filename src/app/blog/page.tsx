@@ -1,5 +1,7 @@
 import { client } from '@/sanity/lib/client'
 
+export const dynamic = 'force-dynamic'
+
 const POSTS_QUERY = `*[_type == "post"] | order(publishedAt desc) {
   _id,
   title,

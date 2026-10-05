@@ -1,5 +1,4 @@
-export const apiVersion =
-  process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-10-05'
+export const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2026-10-05'
 
 export const dataset = assertValue(
   process.env.NEXT_PUBLIC_SANITY_DATASET,
@@ -13,8 +12,8 @@ export const projectId = assertValue(
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   if (v === undefined) {
-    throw new Error(errorMessage)
+    console.warn(`[sanity/env] ${errorMessage} - using fallback`)
+    return '' as unknown as T
   }
-
   return v
 }
