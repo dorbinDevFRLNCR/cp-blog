@@ -5,6 +5,8 @@ import PostCard from '../../components/ui/post/postCard/postCard'
 import { urlFor } from '@/sanity/lib/image'
 import { Post } from '../../types/post'
 
+export const dynamic = 'force-dynamic'
+
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
   title,
