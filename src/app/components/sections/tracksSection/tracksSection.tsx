@@ -7,7 +7,7 @@ const tracks = [
   {
     num: '01',
     icon: <ItVektor className="h-12 w-12" />,
-    label: '01 / IT · WEB',
+    label: '01 DIgital / IT · WEB',
     title: 'Wie ich mein Design System mit Velite & pnpm baue',
     count: '12',
     href: '/blog/it-web',
@@ -18,20 +18,20 @@ const tracks = [
   {
     num: '02',
     icon: <SimRacingVektor className="h-12 w-12" />,
-    label: '02 / SIMRACING',
-    title: '50 km/h Limiter: Warum Monza Pit-Entry ein Horror ist',
+    label: '02 Motorsport / GT3',
+    title: 'GT3 auf der Nordschleife: 25 Kilometer, null Fehler erlaubt',
     count: '8',
     href: '/blog/simracing',
-    className: 'bg-accent-sim-primary',
-    numColor: 'text-accent-sim-secondary',
-    iconColor: 'text-accent-sim-secondary',
+    className: 'bg-accent-motorsport-primary',
+    numColor: 'text-accent-motorsport-secondary',
+    iconColor: 'text-accent-motorsport-secondary',
   },
   {
     num: '03',
     icon: <IRLVektor className="h-12 w-12" />,
-    label: '03 / IRL',
-    title: 'Heusenstamm, B2 und Ausbildung 2027',
-    count: '5',
+    label: '03 DIgital / Gaming',
+    title: 'Day-One-Patch: Wann ein Spiel wirklich fertig ist',
+    count: '6',
     href: '/blog/irl',
     className: 'bg-accent-irl', // #fdfbf7
     numColor: 'text-fg-muted', // #fdfbf7

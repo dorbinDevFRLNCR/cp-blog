@@ -7,7 +7,7 @@ const FEATURED_POSTS: Post[] = [
     id: '1',
     label: 'IT / WEB',
     isNew: true,
-    date: 'April 15, 2026',
+    date: '15. April, 2026',
     howMuchToRead: '5 min read',
     href: '/posts/1',
     title: 'Velite + pnpm Workspaces: Mein Content-Layer für 2026',

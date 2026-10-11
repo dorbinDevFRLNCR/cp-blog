@@ -9,11 +9,11 @@ export default function HeroTerminal() {
         </div>
         <div className="space-y-2 font-mono text-[12px] md:text-sm md:space-y-3">
           <div className="text-zinc-500">{`// latest.push()`}</div>
-          <div className="text-[#00FF88]">GT3: P1 — Nordschleife</div>
+          <div className="text-accent-motorsport-primary">GT3: P1 — Nordschleife</div>
           <div className="text-white">lap_time: 6:47.342</div>
           <div className="text-zinc-400">fuel: 12% | tyres: soft</div>
           <div className="h-px bg-zinc-800 my-4" />
-          <div className="text-[#D6FF00]">CODE: shipping fix @ 02:14</div>
+          <div className="text-accent-dev-primary">CODE: shipping fix @ 02:14</div>
           <div className="text-zinc-300">&quot;commit: fix hydration&quot;</div>
           <div className="text-zinc-500">status: deployed ✓</div>
         </div>
