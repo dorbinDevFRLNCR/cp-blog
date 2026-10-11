@@ -19,6 +19,14 @@ export const postType = defineType({
       },
     }),
     defineField({
+      name: 'excerpt',
+      title: 'Kurzbeschreibung',
+      type: 'text',
+      rows: 3,
+      description: 'Ein Satz für Karten und Vorschau, max. 200 Zeichen.',
+      validation: (Rule) => Rule.required().max(200),
+    }),
+    defineField({
       name: 'mainImage',
       type: 'image',
       options: {
@@ -29,6 +37,7 @@ export const postType = defineType({
           name: 'alt',
           type: 'string',
           title: 'Alternative text',
+          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
@@ -36,10 +45,20 @@ export const postType = defineType({
       name: 'categories',
       type: 'array',
       of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
+      description: 'Genau eine Unterkategorie wählen (z. B. LMH, Simracing).',
+      validation: (Rule) => Rule.required().min(1).max(1),
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Featured',
+      type: 'boolean',
+      initialValue: false,
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'body',
@@ -50,6 +69,7 @@ export const postType = defineType({
     select: {
       title: 'title',
       media: 'mainImage',
+      subtitle: 'categories.0.title',
     },
   },
 })
