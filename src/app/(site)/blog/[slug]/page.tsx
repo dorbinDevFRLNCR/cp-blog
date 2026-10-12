@@ -1,26 +1,13 @@
 import { client } from '@/sanity/lib/client'
 import { PortableText } from '@portabletext/react'
 import { notFound } from 'next/navigation'
-
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
-  title,
-  body,
-  publishedAt,
-  mainImage
-}`
+import { POST_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 
 export const dynamic = 'force-dynamic'
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-
-  let post
-  try {
-    post = await client.fetch(POST_QUERY, { slug }, { cache: 'no-store' })
-  } catch (e) {
-    console.error('Sanity fetch failed at build:', e)
-    return notFound()
-  }
+  const post = await client.fetch(POST_BY_SLUG_QUERY, { slug })
 
   if (!post) return notFound()
 

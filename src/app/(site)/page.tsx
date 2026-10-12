@@ -6,10 +6,12 @@ import SectionLine from '../components/ui/sectionLine/sectionLine'
 export default function Home() {
   return (
     <>
-      <Hero />
-      <TracksSection />
-      <SectionLine className="my-8" />
-      <PostsSection />
+      <div className="w-full max-w-7xl mx-auto">
+        <Hero />
+        <TracksSection />
+        <SectionLine className="my-8" />
+        <PostsSection />
+      </div>
     </>
   )
 }

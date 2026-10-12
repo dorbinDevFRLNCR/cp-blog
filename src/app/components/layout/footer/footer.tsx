@@ -25,7 +25,7 @@ const FOOTER_LINKS = [
   {
     id: 5,
     title: 'Datenschutzerklärung',
-    href: '/datenschutzerklarung',
+    href: '/datenschutz',
   },
 ]
 
