@@ -117,7 +117,7 @@ export default function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose:
           ))}
         </Accordion>
 
-        <div className="mt-auto px-4 py-6 border-t border-white/10">
+        <div className="mt-auto md:px-4 py-6 border-t border-white/10">
           <nav className="flex gap-4">
             {SIDEBAR_FOOTER_LINKS.map((link) => (
               <Link

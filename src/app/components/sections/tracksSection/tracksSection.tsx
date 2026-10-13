@@ -1,45 +1,49 @@
 import TrackCard from '../../ui/trackCard/trackCard'
-import ItVektor from '../../../../../public/icons/itVektor'
-import SimRacingVektor from '../../../../../public/icons/simracingVektor'
-import IRLVektor from '../../../../../public/icons/irlVektor'
+import { DOORS_QUERY } from '@/sanity/lib/queries'
+import { client } from '@/sanity/lib/client'
+import { Terminal, Gauge, Gamepad2 } from 'lucide-react'
 
-const tracks = [
+const DOORS_CONFIG = [
   {
     num: '01',
-    icon: <ItVektor className="h-12 w-12" />,
+    icon: <Terminal className="h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32" />,
     label: '01 DIgital / IT · WEB',
     title: 'Wie ich mein Design System mit Velite & pnpm baue',
     count: '12',
-    href: '/blog/it-web',
+    slug: 'it-web',
     className: 'bg-accent-dev-primary',
     numColor: 'text-accent-dev-secondary',
     iconColor: 'text-accent-dev-secondary',
   },
   {
     num: '02',
-    icon: <SimRacingVektor className="h-12 w-12" />,
+    icon: <Gauge className="h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32" />,
     label: '02 Motorsport / GT3',
     title: 'GT3 auf der Nordschleife: 25 Kilometer, null Fehler erlaubt',
+    slug: 'gt3',
     count: '8',
-    href: '/blog/simracing',
     className: 'bg-accent-motorsport-primary',
     numColor: 'text-accent-motorsport-secondary',
     iconColor: 'text-accent-motorsport-secondary',
   },
   {
     num: '03',
-    icon: <IRLVektor className="h-12 w-12" />,
+    icon: <Gamepad2 className="h-16 w-16 md:h-24 md:w-24 lg:h-32 lg:w-32" />,
     label: '03 DIgital / Gaming',
     title: 'Day-One-Patch: Wann ein Spiel wirklich fertig ist',
     count: '6',
-    href: '/blog/irl',
+    slug: 'gameworld',
     className: 'bg-accent-irl', // #fdfbf7
     numColor: 'text-fg-muted', // #fdfbf7
     iconColor: 'text-fg-muted', // #fdfbf7
   },
 ]
 
-export default function TracksSection() {
+type DoorStat = { slug: string; count: number; latestPost?: string }
+
+export default async function TracksSection() {
+  const categories = await client.fetch<DoorStat[]>(DOORS_QUERY)
+
   return (
     <section className="w-full bg-bg px-6 py-10 md:py-20">
       <div className="">
@@ -51,9 +55,24 @@ export default function TracksSection() {
         </div>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {tracks.map((t) => (
-            <TrackCard key={t.num} {...t} />
-          ))}
+          {DOORS_CONFIG.map((config) => {
+            const cat = categories.find((c) => c.slug === config.slug)
+
+            return (
+              <TrackCard
+                key={config.num}
+                num={config.num}
+                icon={config.icon}
+                label={config.label}
+                title={cat?.latestPost || config.title}
+                count={cat?.count ?? 0}
+                slug={config.slug}
+                className={config.className}
+                numColor={config.numColor}
+                iconColor={config.iconColor}
+              />
+            )
+          })}
         </div>
       </div>
     </section>

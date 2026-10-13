@@ -5,7 +5,7 @@ import HeroTerminal from './heroTerminal/heroTerminal'
 function Hero() {
   return (
     <section className="w-full flex items-center">
-      <div className="w-full max-w-7xl mx-auto px-5 pt-10 pb-12 flex flex-col gap-4 md:gap-6 md:py-16 lg:flex-row lg:items-center lg:justify-between lg:px-8 lg:py-24">
+      <div className="w-full max-w-7xl mx-auto px-5 pt-10 pb-12 flex flex-col gap-4 md:gap-6 md:py-16 lg:flex-row lg:justify-between lg:px-8 lg:py-24">
         <div className="flex flex-col gap-[2px] md:gap-6 lg:max-w-[600px]">
           <h1 className="font-black tracking-tighter text-[15vw] leading-[0.85] lg:text-[85px] xl:text-[110px] 2xl:text-[140px] md:text-[90px] text-fg">
             <span className="block text-accent-dev-primary">Bauen.</span>

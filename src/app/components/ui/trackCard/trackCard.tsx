@@ -6,8 +6,8 @@ type Props = {
   iconColor?: string
   label: string
   title: string
-  count: string
-  href: string
+  count: number
+  slug: string
   className: string
   numColor: string
 }
@@ -18,14 +18,14 @@ export default function TrackCard({
   label,
   title,
   count,
-  href,
+  slug,
   className,
   numColor,
   iconColor,
 }: Props) {
   return (
     <a
-      href={href}
+      href={`/blog?cat=${slug}`}
       className={`group relative flex min-h-[300px] flex-col justify-between rounded-[32px] p-7 md:p-8 transition-transform duration-300 hover:-translate-y-1 ${className} md:min-h-[360px] lg:min-h-[480px]`}
     >
       <div className="flex items-start justify-between">
@@ -38,13 +38,13 @@ export default function TrackCard({
       </div>
 
       <span
-        className={`pointer-events-none absolute right-6 top-1/2 -translate-y-1/2 text-[110px] font-black leading-none tracking-tighter opacity-[0.08] transition-all duration-400 group-hover:opacity-[0.5] ${numColor}`}
+        className={`pointer-events-none absolute right-6 top-1/3 md:top-1/2 -translate-y-1/2 text-[80px] md:text-[110px] font-black leading-none tracking-tighter opacity-[0.5] md:opacity-[0] transition-all duration-400 group-hover:opacity-[0.5] ${numColor}`}
       >
         {num}
       </span>
 
       <div
-        className={`${iconColor ? iconColor : ''} pr-[164px] pointer-events-none opacity-[0.08] transition-all duration-400 group-hover:opacity-[0.5]`}
+        className={`${iconColor ? iconColor : ''} pr-[164px] pointer-events-none opacity-[0.5] md:opacity-[0] transition-all duration-400 group-hover:opacity-[0.5]`}
       >
         {icon}
       </div>

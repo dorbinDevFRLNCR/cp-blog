@@ -1,3 +1,5 @@
+import { groq } from 'next-sanity'
+
 export const POSTS_LIST_QUERY = `*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
   _id,
   title,
@@ -12,6 +14,13 @@ export const POSTS_LIST_QUERY = `*[_type == "post" && defined(slug.current)] | o
     title,
     "slug": slug.current
   }
+}`
+
+export const DOORS_QUERY = groq`*[_type == "category"]{
+  _id,
+  "slug": slug.current,
+  "latestPost": *[_type == "post" && references(^._id)] | order(date desc)[0].title,
+  "count": count(*[_type == "post" && references(^._id)])
 }`
 
 export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0]{
