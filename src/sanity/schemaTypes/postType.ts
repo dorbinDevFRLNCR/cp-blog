@@ -62,7 +62,62 @@ export const postType = defineType({
     }),
     defineField({
       name: 'body',
-      type: 'blockContent',
+      title: 'Body',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+          styles: [
+            { title: 'Normal', value: 'normal' },
+            { title: 'H2', value: 'h2' },
+            { title: 'H3', value: 'h3' },
+            { title: 'Quote', value: 'blockquote' },
+          ],
+          marks: {
+            decorators: [
+              { title: 'Bold', value: 'strong' },
+              { title: 'Italic', value: 'em' },
+              { title: 'Code', value: 'code' },
+            ],
+            annotations: [
+              {
+                name: 'link',
+                type: 'object',
+                title: 'Link',
+                fields: [{ name: 'href', type: 'url' }],
+              },
+            ],
+          },
+        },
+
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            { name: 'alt', title: 'Alt', type: 'string' },
+            { name: 'caption', title: 'Caption', type: 'string' },
+          ],
+        },
+
+        {
+          type: 'code',
+          title: 'Code Block',
+          options: { language: 'javascript', withFilename: true },
+        },
+
+        {
+          name: 'callout',
+          title: 'Callout',
+          type: 'object',
+          fields: [
+            { name: 'type', type: 'string', options: { list: ['info', 'warning', 'success'] } },
+            { name: 'text', type: 'text' },
+          ],
+          preview: {
+            select: { title: 'text', subtitle: 'type' },
+          },
+        },
+      ],
     }),
   ],
   preview: {

@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from './components/layout/header/header'
 import Footer from './components/layout/footer/footer'
-import { Inter } from "next/font/google";
-import { cn } from "@/lib/utils";
+import { Inter } from 'next/font/google'
+import { cn } from '@/lib/utils'
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
   title: 'CP Blog | Cuper Blog',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className={cn("h-full antialiased", "font-sans", inter.variable)}>
+    <html lang="en" className={cn('h-full antialiased', 'font-sans', inter.variable)}>
       <body className="min-h-screen flex flex-col">{children}</body>
     </html>
   )

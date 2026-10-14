@@ -3,6 +3,12 @@ export type Post = {
   isNew?: boolean
   label: string
   date: string
+  mainImage?: {
+    alt?: string
+    asset?: {
+      url: string
+    }
+  }
   howMuchToRead: string
   href: string
   title: string

@@ -8,13 +8,6 @@ import FilterBar from '@/app/components/ui/filterBar/filterBar'
 
 export const dynamic = 'force-dynamic'
 
-const toSlug = (s: string) =>
-  s
-    .toLowerCase()
-    .replace(/\s*\/\s*/g, '-')
-    .replace(/\s+/g, '-')
-    .trim()
-
 export default async function BlogPage({
   searchParams,
 }: {

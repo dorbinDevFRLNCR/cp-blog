@@ -7,7 +7,14 @@ export const POSTS_LIST_QUERY = `*[_type == "post" && defined(slug.current)] | o
   publishedAt,
   excerpt,
   featured,
-  mainImage,
+  mainImage{
+    alt,
+    asset->{
+      _id,
+      url,
+      metadata { lqip }
+    }
+  },
   "label": categories[0]->title,
   "words": length(string::split(pt::text(body), " ")),
   categories[]->{
@@ -29,9 +36,31 @@ export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0
   "slug": slug.current,
   publishedAt,
   excerpt,
-  body,
+  body[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->{
+        _id,
+        url,
+        metadata { dimensions }
+      }
+    },
+    _type == "code" => {
+      ...,
+      language,
+      code,
+      filename
+    }
+  },
   featured,
-  mainImage,
+  mainImage{
+    alt,
+    asset->{
+      _id,
+      url
+    }
+  },
   "label": categories[0]->title,
   "words": length(string::split(pt::text(body), " ")),
   categories[]->{

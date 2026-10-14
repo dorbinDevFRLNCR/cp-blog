@@ -72,7 +72,7 @@ export default function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose:
       />
 
       <aside
-        className={`fixed top-0 left-0 h-full w-[80%] md:w-[50%] lg:w-[25%] bg-[#0a0a0a] border-r border-white/10 z-50 p-4 flex flex-col transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-0 left-0 h-full w-[85%] md:w-[50%] lg:w-[25%] bg-[#0a0a0a] border-r border-white/10 z-50 p-4 flex flex-col transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
       >
         <div className="-mx-4 -mt-4 px-8 py-6 flex justify-between items-center border-b border-white/10">
           <Image src="/image/logo.png" alt="Logo" width={100} height={50} />
@@ -84,41 +84,43 @@ export default function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose:
           </button>
         </div>
 
-        <Accordion
-          type="multiple"
-          defaultValue={['digital', 'motorsport']}
-          className="w-full flex flex-col text-fg-muted gap-4 mt-4 border-none"
-        >
-          {menu.map((cat) => (
-            <AccordionItem
-              key={cat.id}
-              value={cat.id}
-              className="border border-border hover:border-border-muted rounded-2xl px-2 bg-white/[0.02] overflow-hidden"
-            >
-              <AccordionTrigger className="text-xs cursor-pointer font-bold uppercase tracking-[0.2em] hover:no-underline px-2 py-5">
-                {cat.title}
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="flex flex-col">
-                  {cat.links.map((l) => (
-                    <Link
-                      key={l.name}
-                      href={l.href}
-                      onClick={onClose}
-                      className="py-3 flex gap-2 items-center text-[15px] text-fg-muted hover:text-fg-subtle transition"
-                    >
-                      {l.icon}
-                      {l.name}
-                    </Link>
-                  ))}
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="flex-1 overflow-y-auto -mx-4 px-4 py-4 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+          <Accordion
+            type="multiple"
+            defaultValue={['digital', 'motorsport']}
+            className="w-full flex flex-col text-fg-muted gap-4 mt-4 border-none"
+          >
+            {menu.map((cat) => (
+              <AccordionItem
+                key={cat.id}
+                value={cat.id}
+                className="border border-border hover:border-border-muted rounded-2xl px-2 bg-white/[0.02] overflow-hidden"
+              >
+                <AccordionTrigger className="text-xs cursor-pointer font-bold uppercase tracking-[0.2em] hover:no-underline px-2 py-5">
+                  {cat.title}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <div className="flex flex-col">
+                    {cat.links.map((l) => (
+                      <Link
+                        key={l.name}
+                        href={l.href}
+                        onClick={onClose}
+                        className="py-3 flex gap-2 items-center text-[15px] text-fg-muted hover:text-fg-subtle transition"
+                      >
+                        {l.icon}
+                        {l.name}
+                      </Link>
+                    ))}
+                  </div>
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </div>
 
         <div className="mt-auto md:px-4 py-6 border-t border-white/10">
-          <nav className="flex gap-4">
+          <nav className="flex text-sm md:text-base gap-2 md:gap-4">
             {SIDEBAR_FOOTER_LINKS.map((link) => (
               <Link
                 key={link.id}
