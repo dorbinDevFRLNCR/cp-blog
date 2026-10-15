@@ -16,7 +16,7 @@ export const POSTS_LIST_QUERY = `*[_type == "post" && defined(slug.current)] | o
     }
   },
   "label": categories[0]->title,
-  "words": length(string::split(pt::text(body), " ")),
+  "chars": length(pt::text(body)),
   categories[]->{
     title,
     "slug": slug.current
@@ -62,7 +62,7 @@ export const POST_BY_SLUG_QUERY = `*[_type == "post" && slug.current == $slug][0
     }
   },
   "label": categories[0]->title,
-  "words": length(string::split(pt::text(body), " ")),
+  "chars": length(pt::text(body)),
   categories[]->{
     title,
     "slug": slug.current

@@ -10,10 +10,12 @@ export type RawPost = {
   mainImage?: { asset?: { _ref: string } }
   featured?: boolean
   label?: string
-  words?: number
+  chars?: number
   publishedAt: string
   categories?: { title: string; slug: string }[]
 }
+
+export const readTimeFromChars = (chars = 0) => Math.max(1, Math.ceil(chars / 1200))
 
 export function toPost(p: RawPost): Post {
   return {
@@ -24,7 +26,7 @@ export function toPost(p: RawPost): Post {
       month: 'long',
       year: 'numeric',
     }),
-    howMuchToRead: `${Math.max(1, Math.round((p.words ?? 0) / 200))} Min.`,
+    howMuchToRead: `${readTimeFromChars(p.chars)} Min.`,
     href: `/blog/${p.slug}`,
     title: p.title,
     description: p.excerpt ?? '',

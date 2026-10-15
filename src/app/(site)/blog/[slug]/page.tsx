@@ -5,27 +5,38 @@ import Link from 'next/link'
 import { POST_BY_SLUG_QUERY } from '@/sanity/lib/queries'
 import { ArrowLeft, Clock, Calendar } from 'lucide-react'
 import Image from 'next/image'
+import { readTimeFromChars } from '@/sanity/lib/mappers'
 
 export const dynamic = 'force-dynamic'
 
 const ptComponents: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2 className="text-3xl font-bold mt-12 mb-6 tracking-tight">{children}</h2>
+      <h2 className="text-2xl font-bold mt-12 mb-6 text-white tracking-tight">{children}</h2>
     ),
-    h3: ({ children }) => <h3 className="text-2xl font-bold mt-8 mb-4">{children}</h3>,
-    normal: ({ children }) => <p className="text- leading-8 text-zinc-300 mb-6">{children}</p>,
+    h3: ({ children }) => <h3 className="text-2xl text-white font-bold mt-8 mb-4">{children}</h3>,
+    normal: ({ children }) => <p className="leading-6 text-zinc-300 mb-3">{children}</p>,
     blockquote: ({ children }) => (
       <blockquote className="border-l-2 border-white/20 pl-6 py-2 my-8 italic text-zinc-400">
         {children}
       </blockquote>
     ),
   },
+  list: {
+    bullet: ({ children }) => (
+      <ul className="list-disc pl-6 my-4 space-y-2 text-fg-muted">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="list-decimal pl-6 my-4 space-y-2 text-fg-muted">{children}</ol>
+    ),
+  },
+  listItem: {
+    bullet: ({ children }) => <li className="leading-6">{children}</li>,
+    number: ({ children }) => <li className="leading-6">{children}</li>,
+  },
   marks: {
     code: ({ children }) => (
-      <code className="px-1.5 py-0.5 rounded bg-white/10 text-white text- font-mono">
-        {children}
-      </code>
+      <code className="px-1.5 py-0.5 rounded bg-white/10 text-white font-mono">{children}</code>
     ),
     link: ({ children, value }) => {
       const href = (value as { href?: string })?.href
@@ -78,12 +89,13 @@ export default async function PostPage({ params }: Props) {
   const { slug } = await params
   const post = await client.fetch(POST_BY_SLUG_QUERY, { slug })
 
-  const mainImageUrl = (post.mainImage?.asset?.url || post.image?.asset?.url) as string | undefined
-
   if (!post) return notFound()
 
+  const readTime = readTimeFromChars(post.chars)
+
+  const mainImageUrl = (post.mainImage?.asset?.url || post.image?.asset?.url) as string | undefined
+
   return (
-    //... остальной JSX тот же что выше
     <div className="min-h-screen">
       <div className="w-full max-w-3xl mx-auto px-6 md:px-0 py-4 md:py-6">
         <Link
@@ -112,7 +124,7 @@ export default async function PostPage({ params }: Props) {
           )}
           <span className="flex items-center gap-1.5">
             <Clock className="w-4 h-4" />
-            {Math.ceil((post.body?.length || 5) / 5)} min read
+            {readTime} min read
           </span>
         </div>
 
